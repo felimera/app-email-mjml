@@ -1,0 +1,2 @@
+INSERT INTO workspaces (id, name, description) VALUES (1, 'Equipo de Ingeniería', 'Área encargada del desarrollo de software y arquitectura.');
+INSERT INTO workspaces (id, name, description) VALUES (2, 'Equipo de Marketing', 'Área de pauta publicitaria y campañas de crecimiento.');
