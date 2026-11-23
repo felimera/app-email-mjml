@@ -1,0 +1,14 @@
+<mjml>
+  <mj-body>
+    <mj-section background-color="#f0f0f0">
+      <mj-column>
+        <mj-text font-size="20px" color="#333">¡Hola, <span th:text="${fullName}">Usuario</span>!</mj-text>
+        <mj-text font-size="14px" color="#555">Tu teléfono registrado es: <span th:text="${phone}">Teléfono</span></mj-text>
+        <mj-divider border-color="#faa"></mj-divider>
+        <mj-text font-size="16px" font-weight="bold">Información de tu Área de Trabajo:</mj-text>
+        <mj-text font-size="14px">Área: <span th:text="${workspaceName}">Nombre del Área</span></mj-text>
+        <mj-text font-size="14px">Descripción: <span th:text="${workspaceDescription}">Descripción</span></mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
