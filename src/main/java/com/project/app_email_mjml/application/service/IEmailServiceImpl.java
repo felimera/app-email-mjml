@@ -7,12 +7,15 @@ import com.project.app_email_mjml.domain.service.IWorkspacesService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
+
+import java.nio.charset.StandardCharsets;
 
 @Service
 public class IEmailServiceImpl implements IEmailService {
@@ -41,6 +44,9 @@ public class IEmailServiceImpl implements IEmailService {
         context.setVariable("workspaceName", workspace.getName());
         context.setVariable("workspaceDescription", workspace.getDescription());
 
+        // MODIFICAR EL PREVIEW AQUÍ:
+        context.setVariable("previewText", "Te damos la bienvenida oficial a " + workspace.getName() + ". Revisa los detalles adjuntos.");
+
         // 3. Procesar la plantilla HTML (generada a partir de MJML)
         String htmlContent = templateEngine.process("email-template", context);
 
@@ -51,6 +57,13 @@ public class IEmailServiceImpl implements IEmailService {
         helper.setTo(request.getEmail());
         helper.setSubject("Bienvenido a " + workspace.getName());
         helper.setText(htmlContent, true); // true indica que es HTML
+
+        // ==========================================
+        // 5. AGREGAR DOCUMENTO PDF DE PRUEBA ADJUNTO
+        // ==========================================
+        byte[] dummyPdfBytes = "Contenido de prueba del documento PDF adjunto...".getBytes(StandardCharsets.UTF_8);
+        ByteArrayResource pdfResource = new ByteArrayResource(dummyPdfBytes);
+        helper.addAttachment("Documento-Informativo.pdf", pdfResource);
 
         mailSender.send(message);
     }
