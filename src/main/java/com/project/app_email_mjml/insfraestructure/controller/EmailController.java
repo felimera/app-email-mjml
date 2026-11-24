@@ -2,6 +2,7 @@ package com.project.app_email_mjml.insfraestructure.controller;
 
 import com.project.app_email_mjml.application.dto.EmailRequestDto;
 import com.project.app_email_mjml.domain.service.IEmailService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ public class EmailController {
     }
 
     @PostMapping("/send")
-    public ResponseEntity<String> sendEmail(@RequestBody EmailRequestDto request) {
+    public ResponseEntity<String> sendEmail(@Valid @RequestBody EmailRequestDto request) {
         try {
             iEmailService.sendWorkspaceEmail(request);
             return ResponseEntity.ok("Correo enviado exitosamente.");
