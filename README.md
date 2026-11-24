@@ -18,15 +18,23 @@ Backend desarrollado en Spring Boot diseñado para procesar plantillas de correo
 src/
 ├── main/
 │   ├── java/com/project/app_email_mjml/
-│   │   ├── controller/            # Controladores REST (Endpoints y Swagger)
-│   │   ├── dto/                   # Objetos de transferencia de datos (DTOs y validaciones)
-│   │   ├── model/                 # Entidades JPA (Workspaces, etc.)
-│   │   ├── repository/            # Repositorios de acceso a datos
-│   │   └── service/               # Lógica de negocio (Envío de correos y gestión)
+│   │   ├── application/           # Capa de aplicación (Casos de uso y transformación)
+│   │   │   ├── dto/               # Objetos de transferencia de datos (Request/Response)
+│   │   │   ├── mapper/            # Conversión entre entidades de dominio y DTOs
+│   │   │   └── service/           # Implementación de servicios de aplicación
+│   │   ├── domain/                # Capa de dominio (Núcleo del negocio)
+│   │   │   ├── models/            # Entidades y modelos principales (Workspaces, etc.)
+│   │   │   ├── repository/        # Interfaces de repositorios (Puertos de salida)
+│   │   │   └── service/           # Contratos e interfaces de servicios de dominio
+│   │   └── insfraestructure/      # Capa de infraestructura (Adaptadores y configuración)
+│   │       ├── config/            # Configuraciones del framework (OpenAPI/Swagger, Async, etc.)
+│   │       ├── controller/        # Controladores REST (Puntos de entrada HTTP)
+│   │       ├── exception/         # Manejadores globales de excepciones
+│   │       └── util/              # Clases utilitarias y helpers
 │   └── resources/
-│       ├── templates/             # Plantillas HTML procesadas con Thymeleaf
+│       ├── mail-templates/             # Plantillas HTML procesadas con Thymeleaf y MJML
 │       └── application.properties # Configuración del servidor, correo y base de datos
-└── test/                          # Pruebas unitarias (Servicios, Controladores y Repositorios)
+└── test/                          # Pruebas unitarias (Servicios y Controladores)
 ```
 ### ✨ Características Principales
 
